@@ -79,16 +79,51 @@ st.markdown("""
 .hero-title span{color:var(--accent)}
 .hero-sub{max-width:920px;color:#C8D2DE;font-size:1rem;line-height:1.55}
 
-.stTabs [data-baseweb="tab-list"]{gap:.55rem;background:transparent;padding:.25rem 0 .8rem}
+.stTabs [data-baseweb="tab-list"]{
+  display:flex!important;
+  gap:.7rem!important;
+  background:rgba(7,17,31,.78)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:16px!important;
+  padding:.45rem!important;
+  margin:.15rem 0 1.1rem!important;
+  box-shadow:0 10px 35px rgba(0,0,0,.24);
+}
 .stTabs [data-baseweb="tab"]{
-  height:2.65rem;padding:0 1.15rem;border-radius:999px;color:#B8C3D1;
-  background:rgba(255,255,255,.045);border:1px solid var(--line);font-weight:700
+  height:3.15rem!important;
+  padding:0 1.35rem!important;
+  border-radius:11px!important;
+  color:#B9C5D4!important;
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid transparent!important;
+  font-size:.94rem!important;
+  font-weight:750!important;
+  letter-spacing:.01em!important;
+  transition:all .18s ease!important;
+  white-space:nowrap!important;
 }
-.stTabs [data-baseweb="tab"]:hover{color:#fff;border-color:rgba(39,211,194,.45)}
+.stTabs [data-baseweb="tab"]:hover{
+  color:#F7FAFC!important;
+  background:rgba(39,211,194,.09)!important;
+  border-color:rgba(39,211,194,.28)!important;
+}
 .stTabs [aria-selected="true"]{
-  background:linear-gradient(90deg,var(--accent),#1DB3C5)!important;color:#061019!important;
-  border-color:var(--accent)!important;box-shadow:0 8px 24px rgba(39,211,194,.20)
+  color:#061019!important;
+  background:linear-gradient(135deg,#27D3C2 0%,#2AAEC5 100%)!important;
+  border-color:#27D3C2!important;
+  box-shadow:0 7px 22px rgba(39,211,194,.25)!important;
 }
+.stTabs [data-baseweb="tab-highlight"]{
+  display:none!important;
+}
+.stTabs [data-baseweb="tab-border"]{
+  display:none!important;
+}
+.stTabs [data-baseweb="tab"] p{
+  margin:0!important;
+  color:inherit!important;
+}
+
 
 .section{
   display:flex;align-items:center;gap:.65rem;font-family:Georgia,'Times New Roman',serif;
