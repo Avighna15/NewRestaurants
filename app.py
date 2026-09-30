@@ -21,17 +21,119 @@ st.set_page_config(
 # ------------------------- STYLE -----------------------------
 st.markdown("""
 <style>
-.block-container {padding-top:1.3rem; padding-bottom:2rem; max-width:1500px;}
-.title {font-size:2.15rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.1rem;}
-.subtitle {color:#667085;font-size:.98rem;margin-bottom:1rem;}
-.section {font-size:1.15rem;font-weight:750;margin:.45rem 0 .35rem;}
-.note {color:#667085;font-size:.82rem;}
-div[data-testid="stMetric"] {
-    background:#fff;border:1px solid #EAECF0;padding:15px 17px;
-    border-radius:14px;box-shadow:0 2px 8px rgba(16,24,40,.05);
+:root{
+  --bg:#07111F;
+  --bg2:#0D1728;
+  --panel:#111D2E;
+  --panel2:#162338;
+  --accent:#27D3C2;
+  --contrast:#FFB547;
+  --white:#F7FAFC;
+  --muted:#9EABBC;
+  --line:rgba(255,255,255,.09);
 }
-div[data-testid="stMetricLabel"] {color:#667085;font-weight:600;}
-div[data-testid="stMetricValue"] {font-weight:800;}
+.stApp{
+  background:
+    radial-gradient(circle at 82% 4%,rgba(39,211,194,.13),transparent 22%),
+    radial-gradient(circle at 12% 88%,rgba(255,181,71,.09),transparent 25%),
+    radial-gradient(circle at 55% 45%,rgba(73,108,168,.07),transparent 32%),
+    linear-gradient(135deg,#050B14 0%,#091321 48%,#0E1929 100%);
+  color:var(--white);
+}
+.stApp:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.028;
+  background-image:radial-gradient(#fff .65px,transparent .65px);
+  background-size:11px 11px;z-index:0;
+}
+.block-container{padding:1.35rem 2rem 3rem;max-width:1550px;position:relative;z-index:1;}
+[data-testid="stHeader"]{background:transparent;}
+
+.hero{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:26px;
+  padding:2rem 2.25rem 1.85rem;margin-bottom:1rem;
+  background:
+    linear-gradient(115deg,rgba(8,16,28,.98) 0%,rgba(12,28,43,.94) 55%,rgba(19,49,57,.84) 100%);
+  box-shadow:0 25px 80px rgba(0,0,0,.35);
+}
+.hero:before{
+  content:"";position:absolute;width:420px;height:420px;right:-150px;top:-210px;
+  border:1px solid rgba(39,211,194,.20);border-radius:50%;
+  box-shadow:0 0 0 38px rgba(39,211,194,.035),0 0 0 76px rgba(39,211,194,.018);
+}
+.hero:after{
+  content:"";position:absolute;width:180px;height:4px;left:2.25rem;bottom:0;
+  background:linear-gradient(90deg,var(--accent),var(--contrast));border-radius:10px;
+}
+.brand{display:flex;align-items:center;gap:.65rem;color:#fff;font-weight:800;font-size:1rem;margin-bottom:.8rem}
+.brandmark{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),#168FA6);
+  display:inline-flex;align-items:center;justify-content:center;color:#061019;
+  font-weight:950;box-shadow:0 8px 24px rgba(39,211,194,.20)
+}
+.kicker{font-size:.70rem;letter-spacing:.20em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.hero-title{
+  font-family:Georgia,'Times New Roman',serif;font-size:2.65rem;line-height:1.05;
+  font-weight:700;color:#F8FBFF;margin:.35rem 0 .55rem
+}
+.hero-title span{color:var(--accent)}
+.hero-sub{max-width:920px;color:#C8D2DE;font-size:1rem;line-height:1.55}
+
+.stTabs [data-baseweb="tab-list"]{gap:.55rem;background:transparent;padding:.25rem 0 .8rem}
+.stTabs [data-baseweb="tab"]{
+  height:2.65rem;padding:0 1.15rem;border-radius:999px;color:#B8C3D1;
+  background:rgba(255,255,255,.045);border:1px solid var(--line);font-weight:700
+}
+.stTabs [data-baseweb="tab"]:hover{color:#fff;border-color:rgba(39,211,194,.45)}
+.stTabs [aria-selected="true"]{
+  background:linear-gradient(90deg,var(--accent),#1DB3C5)!important;color:#061019!important;
+  border-color:var(--accent)!important;box-shadow:0 8px 24px rgba(39,211,194,.20)
+}
+
+.section{
+  display:flex;align-items:center;gap:.65rem;font-family:Georgia,'Times New Roman',serif;
+  font-size:1.45rem;font-weight:700;color:#F5F9FF;margin:1.1rem 0 .7rem
+}
+.section:before{
+  content:"";width:4px;height:1.45rem;background:linear-gradient(var(--accent),var(--contrast));
+  border-radius:5px;box-shadow:0 0 18px rgba(39,211,194,.28)
+}
+.note{color:#9EABBC!important}
+
+div[data-testid="stMetric"]{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(20,34,53,.97),rgba(12,24,39,.97));
+  border:1px solid var(--line);border-radius:17px;padding:16px 17px 14px;
+  box-shadow:0 15px 38px rgba(0,0,0,.20)
+}
+div[data-testid="stMetric"]:before{
+  content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--contrast))
+}
+div[data-testid="stMetricLabel"]{color:#AAB7C7!important;font-weight:700}
+div[data-testid="stMetricValue"]{color:#F7FAFC!important;font-weight:850;letter-spacing:-.02em}
+
+[data-testid="stDataFrame"]{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#111D2E}
+div[data-baseweb="select"]>div,div[data-baseweb="input"]>div,[data-testid="stDateInput"]>div>div{
+  background:#101C2C!important;border-color:rgba(255,255,255,.12)!important;
+  color:#F5F7FA!important;border-radius:10px!important
+}
+label{color:#C1CCD9!important;font-weight:650!important}
+
+div[data-testid="stAlert"]{
+  background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.35);
+  color:#F4E8D5;border-radius:14px
+}
+.insight-ribbon{
+  margin:1rem 0 1.3rem;padding:1rem 1.2rem;border:1px solid rgba(39,211,194,.28);
+  border-radius:16px;background:linear-gradient(100deg,rgba(39,211,194,.10),rgba(255,181,71,.055));
+  color:#DCE6EF
+}
+.insight-ribbon b{color:var(--accent)}
+.premium-footer{
+  margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);
+  color:#7F8EA1;font-size:.75rem;display:flex;justify-content:space-between
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -158,18 +260,25 @@ def order_metrics(d):
     cancellations = (d["status"] == "Cancelled").sum()
     return revenue, net, n, (cancellations / len(d) * 100 if len(d) else 0)
 
-# ------------------------- HEADER ----------------------------
-st.markdown('<div class="title">🏪 Franchise Expansion Dashboard</div>', unsafe_allow_html=True)
-st.markdown(
-    '<div class="subtitle">Using historical order, product, area and platform data to evaluate evidence for a potential new branch.</div>',
-    unsafe_allow_html=True,
-)
+# ------------------------- CHART THEME -----------------------
+ORANGE="#FF5F00"; AMBER="#FFB000"; CREAM="#F7F3EE"; MUTED="#AEB3BA"
+def style_fig(fig,height=350,showlegend=None):
+    fig.update_layout(height=height,margin=dict(l=12,r=12,t=18,b=12),paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",font=dict(family="Arial",color=CREAM,size=12),hoverlabel=dict(bgcolor="#17191B",bordercolor=ORANGE,font_color=CREAM),xaxis=dict(gridcolor="rgba(255,255,255,.08)",zerolinecolor="rgba(255,255,255,.08)",tickfont_color=MUTED),yaxis=dict(gridcolor="rgba(255,255,255,.08)",zerolinecolor="rgba(255,255,255,.08)",tickfont_color=MUTED),legend=dict(font=dict(color=CREAM),bgcolor="rgba(0,0,0,0)"))
+    if showlegend is not None: fig.update_layout(showlegend=showlegend)
+    return fig
 
-st.info(
-    "Project assumption: food cost, labour cost, rent and utilities are currently set to AED 0. "
-    "Therefore, Illustrative Profit = Net Revenue after platform commission. "
-    "This is a hypothesis metric, not audited accounting profit."
-)
+# ------------------------- HEADER ----------------------------
+st.markdown("""
+<div class="hero">
+  <div class="brand"><span class="brandmark">FI</span> Franchise Intelligence</div>
+  <div class="kicker">Restaurant Chain · Franchise Expansion Analysis</div>
+  <div class="hero-title">From <span>Insights</span> to the Next Location</div>
+  <div class="hero-sub">A board-ready view of historical demand, product performance and location concentration — designed to support evidence-based expansion discussions.</div>
+</div>
+<div class="insight-ribbon"><b>BOARD LENS</b> &nbsp; Where is demand strongest? &nbsp; · &nbsp; What products drive it? &nbsp; · &nbsp; How concentrated is that demand? &nbsp; · &nbsp; What evidence supports a new branch?</div>
+""", unsafe_allow_html=True)
+
+st.warning("Project assumption: food cost, labour, rent and utilities are currently AED 0. Therefore, Illustrative Profit = Net Revenue after platform commission. This is a hypothesis metric, not audited accounting profit.")
 
 # ------------------------- NAVIGATION -----------------------
 tab1, tab2, tab3 = st.tabs([
@@ -248,15 +357,15 @@ with tab1:
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=trend["Month"], y=trend["Gross_Revenue"], mode="lines+markers",
-        name="Gross Revenue", line=dict(width=3),
+        name="Gross Revenue", line=dict(width=3,color=ORANGE),
         hovertemplate="Gross: AED %{y:,.0f}<extra></extra>"
     ))
     fig.add_trace(go.Scatter(
         x=trend["Month"], y=trend["Net_Revenue"], mode="lines+markers",
-        name="Net Revenue", line=dict(width=2),
+        name="Net Revenue", line=dict(width=2,color=CREAM),
         hovertemplate="Net: AED %{y:,.0f}<extra></extra>"
     ))
-    fig.update_layout(height=350, margin=dict(l=10,r=10,t=15,b=10), hovermode="x unified")
+    style_fig(fig,350); fig.update_layout(hovermode="x unified")
     st.plotly_chart(fig, use_container_width=True)
 
     c1,c2,c3 = st.columns(3)
@@ -272,8 +381,8 @@ with tab1:
             .groupby("dish", as_index=False)["quantity"].sum()
             .sort_values("quantity", ascending=False).head(8)
         )
-        fig = px.bar(top_dishes.sort_values("quantity"), x="quantity", y="dish", orientation="h")
-        fig.update_layout(height=330, margin=dict(l=10,r=10,t=10,b=10), showlegend=False)
+        fig = px.bar(top_dishes.sort_values("quantity"), x="quantity", y="dish", orientation="h", color_discrete_sequence=[ORANGE])
+        style_fig(fig,330,showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
     with c2:
@@ -282,15 +391,15 @@ with tab1:
             period_delivered.groupby("area", as_index=False)["net_revenue"]
             .sum().sort_values("net_revenue", ascending=False)
         )
-        fig = px.bar(area_rev.sort_values("net_revenue"), x="net_revenue", y="area", orientation="h")
-        fig.update_layout(height=330, margin=dict(l=10,r=10,t=10,b=10), showlegend=False)
+        fig = px.bar(area_rev.sort_values("net_revenue"), x="net_revenue", y="area", orientation="h", color_discrete_sequence=[ORANGE])
+        style_fig(fig,330,showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
     with c3:
         st.markdown('<div class="section">Platform revenue mix</div>', unsafe_allow_html=True)
         plat = period_delivered.groupby("platform", as_index=False)["net_revenue"].sum()
-        fig = px.pie(plat, names="platform", values="net_revenue", hole=.55)
-        fig.update_layout(height=330, margin=dict(l=10,r=10,t=10,b=10))
+        fig = px.pie(plat, names="platform", values="net_revenue", hole=.55, color_discrete_sequence=[ORANGE,AMBER,CREAM,"#7C858F","#8B2F1C"])
+        style_fig(fig,330)
         st.plotly_chart(fig, use_container_width=True)
 
 # ============================================================
@@ -409,9 +518,10 @@ with tab2:
             y="dish",
             color="category",
             orientation="h",
+            color_discrete_sequence=[ORANGE,AMBER,CREAM,"#7C858F"],
             labels={"Item_Net_Revenue":"Illustrative Net Revenue","dish":""}
         )
-        fig.update_layout(height=390, margin=dict(l=10,r=10,t=10,b=10))
+        style_fig(fig,390)
         st.plotly_chart(fig, use_container_width=True)
 
     with p2:
@@ -595,8 +705,9 @@ with tab3:
         y="Units",
         hover_data=["Illustrative_Profit"],
         labels={"area":"","Units":"Units Sold"},
+        color_discrete_sequence=[ORANGE],
     )
-    fig.update_layout(height=360, margin=dict(l=10,r=10,t=10,b=10))
+    style_fig(fig,360)
     st.plotly_chart(fig, use_container_width=True)
 
     # Compact cancellation view
@@ -639,3 +750,6 @@ st.caption(
     "Hypothesis dashboard • Source: areas, menu, orders, order_items and platforms datasets • "
     "Illustrative profit assumes AED 0 for food, labour, rent and utilities."
 )
+
+
+st.markdown("""<div class="premium-footer"><span>Franchise Intelligence · Expansion hypothesis</span><span>Data-driven decision support · Not an audited financial model</span></div>""", unsafe_allow_html=True)
